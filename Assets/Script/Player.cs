@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
@@ -40,8 +39,7 @@ public class Player : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
 
         Vector2 dir = Direction(h, v);
-
-        rb.velocity = dir * playerspeed;
+        transform.position += new Vector3(h * playerspeed * Time.deltaTime, v * playerspeed * Time.deltaTime, 0);
 
         //左右の向きを変えることでアニメーションを右だけ（左だけ）にすることができる
         if (dir.x != 0)
@@ -82,13 +80,13 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        if(x != 0)
+        if(x != 0 || y != 0)
         {
             anim.Play("Playerright");
         }
         else
         {
-            if(lastMovedDirection.x != 0)
+            if(lastMovedDirection.x != 0 || lastMovedDirection.y != 0)
             {
                 anim.Play("Player-Idle-right");
             }
