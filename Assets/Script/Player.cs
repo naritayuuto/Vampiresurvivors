@@ -5,17 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Player: MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] float playerspeed = 0f;
     [SerializeField] float _shootTime = 0.3f;
     List<ISkill> _skill = new List<ISkill>();
     float _timer = 0.0f;
-
+    static int playerHP = 100;
     Vector2 lastMovedDirection;
     Rigidbody2D rb;
     Animator anim;
     SpriteRenderer sprite;
+
+    public static int PlayerHP { get => playerHP; set => playerHP = value; }
 
     void Awake()
     {

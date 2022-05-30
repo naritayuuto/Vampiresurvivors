@@ -9,13 +9,11 @@ public class HP : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //slider.maxValue = playerHP;
-
+        slider.maxValue = Player.PlayerHP;
     }
-
     // Update is called once per frame
     void Update()
     {
-        GameObject.Find("SliderCanvas").transform.LookAt(GameObject.Find("éÂêlåˆÇÃñºëO").transform);
+        GameObject.Find("SliderCanvas").transform.LookAt(GameObject.Find("Player").transform);
     }
 }
