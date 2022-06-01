@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour, IObjectPool
     SpriteRenderer _image;
     Enemy _target;
     Vector3 _shootVec;
-
+    public int damage;//‰¼
     float _timer = 0.0f;
 
     void Awake()
@@ -42,7 +42,8 @@ public class Bullet : MonoBehaviour, IObjectPool
             vec = e.transform.position - this.transform.position;
             if (vec.magnitude < 1.5f)
             {
-                e.Damage();
+                damage = Random.Range(5, 8);
+                e.Damage(damage);
                 Destroy();
                 break;
             }
@@ -54,7 +55,6 @@ public class Bullet : MonoBehaviour, IObjectPool
             Destroy();
         }
     }
-
     //ObjectPool
     bool _isActrive = false;
     public bool IsActive => _isActrive;

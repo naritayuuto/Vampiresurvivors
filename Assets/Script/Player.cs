@@ -93,6 +93,7 @@ public class Player : MonoBehaviour
         }
     }
 
+   
     public void AddSkill(int skillId)
     {
         var having = _skill.Where(s => s.SkillId == (SkillDef)skillId);

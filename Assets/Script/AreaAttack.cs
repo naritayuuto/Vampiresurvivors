@@ -5,7 +5,7 @@ public class AreaAttack : ISkill
 {
     public SkillDef SkillId => SkillDef.AreaAttack;
     IntervalTimer _timer = new IntervalTimer();
-
+    public int damage;//‰¼
     float _interval = 1.0f;
     int _maxAttackCount = 10;
     float _area = 5.0f;
@@ -29,7 +29,7 @@ public class AreaAttack : ISkill
             vec = e.transform.position - GameManager.Player.transform.position;
             if (vec.magnitude < _area)
             {
-                e.Damage();
+                e.Damage(damage);
                 attackCount++;
 
                 if (attackCount >= _maxAttackCount)

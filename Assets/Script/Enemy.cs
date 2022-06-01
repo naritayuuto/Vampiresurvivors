@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IObjectPool
 {
     [SerializeField] float _speed = 10;
+    [SerializeField] int pw = 3;
+    static int hp = 10; 
     SpriteRenderer _image;
     Collider2D collider;
     void Awake()
@@ -23,14 +25,29 @@ public class Enemy : MonoBehaviour, IObjectPool
         transform.position += sub * _speed * Time.deltaTime;
     }
 
-    public void Damage()
+    public void Damage(int damage)
     {
-        Destroy();
-
+        hp = hp - damage;
+        if (hp <= 0)
+        {
+            Destroy();
+        }
         //TODO
         GameManager.Instance.GetExperience(1);
     }
 
+    public void Attack()
+    {
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.GetComponent<Player>() != null && collision.gameObject.TryGetComponent(out HP hp))
+        {
+            hp.Damage(pw);
+        }
+    }
     //ObjectPool
     bool _isActrive = false;
     public bool IsActive => _isActrive;
