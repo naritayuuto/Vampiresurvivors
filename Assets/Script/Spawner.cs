@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] float _time = 0.05f;
     [SerializeField] Enemy _prefab = null;
     [SerializeField] Transform _root = null;
-
+    int random; 
     float _timer = 0.0f;
     float _cRad = 0.0f;
     Vector3 _popPos = new Vector3(0, 0, 0);
@@ -39,15 +38,18 @@ public class Spawner : MonoBehaviour
 
     void Spawn()
     {
+        random = UnityEngine.Random.Range(-20, 20);
         //ìñÇΩÇËîªíËÅAscriptÇ»Ç«ÇtrueÇ…Ç∑ÇÈ
         var script = _enemyPool.Instantiate();
         /*
         var go = GameObject.Instantiate(_prefab);
         var script = go.GetComponent<Enemy>();
        */
-        _popPos.x = GameManager.Player.transform.position.x + 100 * Mathf.Cos(_cRad);
-        _popPos.y = GameManager.Player.transform.position.y + 100 * Mathf.Sin(_cRad);
+        _popPos.x = Player.Playerpos.x + random * Mathf.Cos(_cRad);
+        _popPos.y = Player.Playerpos.y + random * Mathf.Sin(_cRad);
         script.transform.position = _popPos;
         _cRad += 0.1f;
+        
+        Debug.Log("seisei");
     }
 }

@@ -26,7 +26,7 @@ public class AreaAttack : ISkill
         {
             if (!e.IsActive) continue;
 
-            vec = e.transform.position - GameManager.Player.transform.position;
+            vec = e.transform.position - Player.Playerpos;
             if (vec.magnitude < _area)
             {
                 e.Damage(damage);
