@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    private Text text;
+    private TextMeshProUGUI text;
     static int minute = 0;
     float seconds = 0;
     public static int Minute { get => minute; set => minute = value; }
 
     void Start()
     {
-        text = GetComponent<Text>();
+        text = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame

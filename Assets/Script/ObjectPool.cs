@@ -50,11 +50,11 @@ public class ObjectPool<T> where T : UnityEngine.Object, IObjectPool
         T ret = null;
         for (int i = 0; i < Pool.Count; ++i)
         {
-            int index = (Index + i) % Pool.Count;
-            if (Pool[index].IsActive) continue;
+            int index = (Index + i) % Pool.Count;//—v‘f”•ª‰ñ‚·
+            if (Pool[index].IsActive) continue;//ŽÀ‘Ì‚ª‚ ‚Á‚½‚ç
 
-            Pool[index].Create();
-            ret = Pool[index];
+            Pool[index].Create();//‚È‚©‚Á‚½‚çŽÀ‘Ì‚ðo‚·
+            ret = Pool[index];//o‚µ‚Ü‚µ‚½‚Æ‚¢‚¤î•ñ‚ð•Ï”‚É“ü‚ê‚Ä
             break;
         }
 

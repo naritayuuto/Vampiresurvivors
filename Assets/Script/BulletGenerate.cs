@@ -10,12 +10,12 @@ public class BulletGenerate : MonoBehaviour
     float time;
     float interval = 1f;
     Vector2 lastpos;
-    Player player;
+    GameObject player;
     ObjectPool<Bullet> bulletPool = new ObjectPool<Bullet>();
 
     private void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = GameObject.Find("Player");
         bulletPool.SetBaseObj(bullet, _root);
         bulletPool.SetCapacity(100);
 
@@ -27,7 +27,6 @@ public class BulletGenerate : MonoBehaviour
         time += Time.deltaTime;
         if(time >= interval)
         {
-            lastpos = player.LastMovedDirection;
             Generate();
             time -= interval;
         }
@@ -35,7 +34,7 @@ public class BulletGenerate : MonoBehaviour
     public void Generate()
     {
         var script = bulletPool.Instantiate();
-        script.transform.position = Player.Playerpos;
+        script.transform.position = player.transform.position;
     }
     
 }

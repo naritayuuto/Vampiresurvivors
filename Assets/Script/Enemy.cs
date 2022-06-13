@@ -6,12 +6,14 @@ public class Enemy : MonoBehaviour, IObjectPool
 {
     [SerializeField] float _speed = 10;
     [SerializeField] float pw = 3.0f;
-    static float hp = 10;
+    float hp = 10;
     float damage = 0;
+    [SerializeField] EXP exp;
     HP h;
     Rigidbody2D rb;
     SpriteRenderer _image;
     Collider2D collider;
+    
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,18 +26,19 @@ public class Enemy : MonoBehaviour, IObjectPool
     }
     void Update()
     {
-
         if (!IsActive) return;
-        var dir =  (Player.Playerpos -transform.position).normalized * _speed;
+        var dir =  (Player.Playerpos - transform.position).normalized * _speed;
         rb.velocity = dir;
     }
 
     public void Damage(float damage)
     {
-        hp = hp - damage;
+        hp -= damage;
         if (hp <= 0)
         {
+            Instantiate(exp, transform.position, Quaternion.identity);
             Destroy();
+            hp += 10;
             KillCount._KillCount++;
         }
         //TODO
@@ -53,9 +56,6 @@ public class Enemy : MonoBehaviour, IObjectPool
     //ObjectPool
     bool _isActrive = false;
     public bool IsActive => _isActrive;
-
-    public static float Hp { get => hp; set => hp = value; }
-
     public void DisactiveForInstantiate()
     {
         _image.enabled = false;

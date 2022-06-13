@@ -5,19 +5,19 @@ using UnityEngine;
 public class Bullet : MonoBehaviour,IObjectPool
 {
     [SerializeField] float bulletSpeed = 7f;
-    static float bulletdamage = 3f;
-    Vector3 _popPos = new Vector3(0, 0, 0);
-    Player player;
-    int count = 0;
+    [SerializeField] Vector3 Up = Vector3.up;
+    float bulletdamage;
+    [SerializeField] float damagemin = 5f;
+    [SerializeField] float damagemax = 7f;
     Rigidbody2D rb;
     SpriteRenderer _image;
     Collider2D collider;
-    Vector2 playerdir;
     float time;
     float interval = 7f;
     // Start is called before the first frame update
     void Awake()
     {
+
         rb = GetComponent<Rigidbody2D>();
         _image = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
@@ -26,25 +26,24 @@ public class Bullet : MonoBehaviour,IObjectPool
     {
         if (!IsActive) return;
         time += Time.deltaTime;
-        var dir = playerdir * bulletSpeed * Time.deltaTime;
-        rb.velocity = dir;
         if (time >= interval)
         {
             Destroy();
+            time = time - interval;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
-           collision.GetComponent<Enemy>().Damage(Bulletdamage);
-           Destroy();
+            bulletdamage = Random.Range(damagemin, damagemax);
+            collision.GetComponent<Enemy>().Damage(bulletdamage);
         }
     }
     bool _isActrive = false;
     public bool IsActive => _isActrive;
 
-    public static float Bulletdamage { get => bulletdamage; set => bulletdamage = value; }
+    public float Interval { get => interval; set => interval = value; }
 
     public void DisactiveForInstantiate()
     {
