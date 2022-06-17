@@ -7,9 +7,12 @@ public class EXP : MonoBehaviour
     SpriteRenderer _image;
     Collider2D collider;
     [SerializeField] int exp = 3;
+    Expbar expbar;
+
     // Start is called before the first frame update
     void Start()
     {
+        expbar = GameObject.Find("EXPbar").GetComponent<Expbar>();
         _image = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
     }
@@ -22,6 +25,7 @@ public class EXP : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            expbar.GetExperience(exp);
             Destroy(gameObject);
         }
     }

@@ -15,6 +15,6 @@ interface ISkill
 public enum SkillDef
 {
     Invalid = 0,
-    ShotBullet = 1,
+    Bullet = 1,
     AreaAttack = 2,
 }

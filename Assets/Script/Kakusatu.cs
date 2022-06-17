@@ -2,22 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour,IObjectPool
+public class Kakusatu : MonoBehaviour, IObjectPool
 {
-    [SerializeField] float bulletSpeed = 7f;
-    [SerializeField] Vector3 Up = Vector3.up;
-    float bulletdamage;
-    [SerializeField] float damagemin = 5f;
-    [SerializeField] float damagemax = 7f;
-    Rigidbody2D rb;
+    Enemy enemy;
+    float enemyhp;
+    float time;
+    float interval = 3f;
     SpriteRenderer _image;
     Collider2D collider;
-    float time;
-    float interval = 7f;
-    // Start is called before the first frame update
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
         _image = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
     }
@@ -31,26 +25,20 @@ public class Bullet : MonoBehaviour,IObjectPool
             time = time - interval;
         }
     }
-    public void Weaponpower()
-    {
-        damagemin += 2;
-        damagemax += 2;
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            bulletdamage = Random.Range(damagemin, damagemax);
-            collision.GetComponent<Enemy>().Damage(bulletdamage);
+            enemy = collision.GetComponent<Enemy>();
+            enemyhp = enemy.Hp;
+            enemy.Damage(enemyhp);
         }
     }
     bool _isActrive = false;
     public bool IsActive => _isActrive;
-
-    public float Interval { get => interval; set => interval = value; }
-
     public void DisactiveForInstantiate()
     {
+
         _image.enabled = false;
         collider.enabled = false;
         _isActrive = false;

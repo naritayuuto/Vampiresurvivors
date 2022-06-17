@@ -24,6 +24,12 @@ public class SceneLoader : MonoBehaviour
                 LoadStart = false;
                 Debug.Log("‘JˆÚŠ®—¹");
             }
+            else
+            {
+                SceneManager.LoadScene(LoadSceneName);
+                LoadStart = false;
+                Debug.Log("‘JˆÚŠ®—¹");
+            }
         }
     }
     public void LoadScene()

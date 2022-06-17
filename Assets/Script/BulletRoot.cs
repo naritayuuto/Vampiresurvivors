@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BulletRoot : MonoBehaviour
 {
-    public SkillDef SkillId => SkillDef.ShotBullet;
     [SerializeField] float speed = 1f;
     [SerializeField] Bullet bullet = null;
     [SerializeField] Transform _root = null;
@@ -13,12 +12,15 @@ public class BulletRoot : MonoBehaviour
     float interval = 5f;
     GameObject player;
     ObjectPool<Bullet> bulletPool = new ObjectPool<Bullet>();
+   
     // Start is called before the first frame update
+
     public void Start()
     {
         player = GameObject.Find("Player");
         bulletPool.SetBaseObj(bullet, _root);
         bulletPool.SetCapacity(100);
+       
     }
 
     // Update is called once per frame
@@ -41,6 +43,6 @@ public class BulletRoot : MonoBehaviour
     }
     public void Levelup()
     {
-        interval -= 0.5f;
+        interval -= -0.5f;
     }
 }

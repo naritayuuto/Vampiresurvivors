@@ -8,17 +8,15 @@ using Cinemachine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float playerspeed = 0f;
+    [SerializeField] float playerspeed = 3f;
     List<ISkill> _skill = new List<ISkill>();
     Vector2 lastMovedDirection;
-    static Vector3 playerpos;
+    Vector3 playerpos;
     Rigidbody2D rb;
     Animator anim;
     SpriteRenderer sprite;
     Vector2 dir;
-    public static Vector3 Playerpos { get => playerpos; set => playerpos = value; }
-    public Vector2 Dir { get => dir; }
-    public Vector2 LastMovedDirection { get => lastMovedDirection; set => lastMovedDirection = value; }
+    public Vector3 Playerpos { get => playerpos; set => playerpos = value; }
 
 
 
@@ -47,7 +45,7 @@ public class Player : MonoBehaviour
             sprite.flipX = dir.x < 0;
         }
         animate(dir.x, dir.y);
-        LastMovedDirection = dir;
+        lastMovedDirection = dir;
     }
 
     void animate(float x,float y)
@@ -62,38 +60,42 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if(LastMovedDirection.x != 0 || LastMovedDirection.y != 0)
+            if(lastMovedDirection.x != 0 || lastMovedDirection.y != 0)
             {
                 anim.Play("Player-Idle-right");
             }
         }
     }
-    public void AddSkill(int skillId)
+    //public void AddSkill(int skillId)
+    //{
+    //    var having = _skill.Where(s => s.SkillId == (SkillDef)skillId);
+    //    if (having.Count() > 0)
+    //    {
+    //        having.Single().Levelup();//Žæ‚Á‚Ä‚½‚ç‚»‚ÌƒŒƒxƒ‹‚ðã‚°‚é
+    //    }
+    //    else//ƒXƒLƒ‹‚Ì’Ç‰Á
+    //    {
+    //        ISkill newSkill = null;
+    //        switch ((SkillDef)skillId)
+    //        {
+    //            case SkillDef.Bullet:
+    //                newSkill = new BulletRoot();
+    //                break;
+
+    //            case SkillDef.AreaAttack:
+    //                newSkill = new AreaAttack();
+    //                break;
+    //        }
+
+    //        if (newSkill != null)
+    //        {
+    //            newSkill.Setup();
+    //            _skill.Add(newSkill);
+    //        }
+    //    }
+    //}
+    public void speedup()
     {
-        //var having = _skill.Where(s => s.SkillId == (SkillDef)skillId);
-        //if (having.Count() > 0)
-        //{
-        //    having.Single().Levelup();
-        //}
-        //else
-        //{
-        //    ISkill newSkill = null;
-        //    switch ((SkillDef)skillId)
-        //    {
-        //        case SkillDef.ShotBullet:
-        //            newSkill = new BulletRoot();
-        //            break;
-
-        //        case SkillDef.AreaAttack:
-        //            newSkill = new AreaAttack();
-        //            break;
-        //    }
-
-        //    if (newSkill != null)
-        //    {
-        //        newSkill.Setup();
-        //        _skill.Add(newSkill);
-        //    }
-        //}
+        playerspeed = playerspeed * 1.1f;
     }
 }

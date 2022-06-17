@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour, IObjectPool
     float hp = 10;
     float damage = 0;
     [SerializeField] EXP exp;
+    GameObject player;
     HP h;
     Rigidbody2D rb;
     SpriteRenderer _image;
@@ -16,6 +17,7 @@ public class Enemy : MonoBehaviour, IObjectPool
     
     void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         _image = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
@@ -27,7 +29,7 @@ public class Enemy : MonoBehaviour, IObjectPool
     void Update()
     {
         if (!IsActive) return;
-        var dir =  (Player.Playerpos - transform.position).normalized * _speed;
+        var dir =  (player.transform.position - transform.position).normalized * _speed;
         rb.velocity = dir;
     }
 
@@ -56,6 +58,9 @@ public class Enemy : MonoBehaviour, IObjectPool
     //ObjectPool
     bool _isActrive = false;
     public bool IsActive => _isActrive;
+
+    public float Hp { get => hp; set => hp = value; }
+
     public void DisactiveForInstantiate()
     {
         _image.enabled = false;

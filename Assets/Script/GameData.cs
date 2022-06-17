@@ -31,19 +31,19 @@ public class GameData
         //new SkillSelectTable(){ Type = SelectType.Execute, TargetId = 2, Name = "ÉSÅ[ÉãÉh", Level = 0, Probability = 40 }
     };
 
-    static public List<int> LevelTable = new List<int>()
-    {
-        0, //level 1
-        5, //level 1Å®2
-        25,//...
-        60,
-        120,
-        200,
-        300,
-        400,
-        500,
-        600,
-        700,
-        800,
-    };
+    //static public List<int> LevelTable = new List<int>()
+    //{
+    //    0, //level 1
+    //    5, //level 1Å®2
+    //    25,//...
+    //    60,
+    //    120,
+    //    200,
+    //    300,
+    //    400,
+    //    500,
+    //    600,
+    //    700,
+    //    800,
+    //};
 }

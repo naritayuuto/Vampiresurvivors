@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -494318681677988244}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,3 +161,4 @@ MonoBehaviour:
   Up: {x: 1, y: 1, z: 0}
   damagemin: 5
   damagemax: 7
+  attack: {fileID: 5692415329180772269, guid: b250fe91ac4512041b3d589d0d7ed932, type: 3}
