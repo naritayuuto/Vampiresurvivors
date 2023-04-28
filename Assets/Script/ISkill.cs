@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 interface ISkill
 {
     SkillDef SkillId { get; }
-    void Setup();
-    void Update();
     void Levelup();
 }
 
@@ -16,5 +14,7 @@ public enum SkillDef
 {
     Invalid = 0,
     Bullet = 1,
-    AreaAttack = 2,
+    Knife = 2,
+    Magic = 3,
+    HolyWater = 4
 }
