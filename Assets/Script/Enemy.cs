@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IObjectPool
 {
-    [SerializeField] float _speed = 10;
+    [SerializeField] float _speed = 8f;
     [SerializeField] float pw = 3.0f;
     float hp = 10;
     float damage = 0;
