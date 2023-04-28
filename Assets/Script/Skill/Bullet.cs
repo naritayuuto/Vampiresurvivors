@@ -6,10 +6,10 @@ public class Bullet : MonoBehaviour,IObjectPool
 {
     [SerializeField] float bulletSpeed = 7f;
     [SerializeField] Vector3 Up = Vector3.up;
-    float bulletdamage;
+    float _damage = 6f;
     [SerializeField] float damagemin = 5f;
     [SerializeField] float damagemax = 7f;
-    Rigidbody2D rb;
+    Rigidbody2D _rb;
     SpriteRenderer _image;
     Collider2D collider;
     float time;
@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour,IObjectPool
     // Start is called before the first frame update
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
         _image = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
     }
@@ -40,8 +40,8 @@ public class Bullet : MonoBehaviour,IObjectPool
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            bulletdamage = Random.Range(damagemin, damagemax);
-            collision.GetComponent<Enemy>().Damage(bulletdamage);
+            _damage = Random.Range(damagemin, damagemax);
+            collision.GetComponent<Enemy>().Damage(_damage);
         }
     }
     bool _isActrive = false;
