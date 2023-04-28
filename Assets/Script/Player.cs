@@ -9,6 +9,7 @@ using Cinemachine;
 public class Player : MonoBehaviour
 {
     [SerializeField] float playerspeed = 3f;
+    [Tooltip("プレイヤーが所持しているスキル")]
     List<ISkill> _skill = new List<ISkill>();
     Vector2 lastMovedDirection;
     Vector3 playerpos;
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
     SpriteRenderer sprite;
     Vector2 dir;
     public Vector3 Playerpos { get => playerpos; set => playerpos = value; }
+    public Vector2 LastMovedDirection { get => lastMovedDirection;}
 
 
 
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour
         }
         animate(dir.x, dir.y);
         lastMovedDirection = dir;
+        Debug.Log(lastMovedDirection);
     }
 
     void animate(float x,float y)
@@ -66,35 +69,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-    //public void AddSkill(int skillId)
-    //{
-    //    var having = _skill.Where(s => s.SkillId == (SkillDef)skillId);
-    //    if (having.Count() > 0)
-    //    {
-    //        having.Single().Levelup();//取ってたらそのレベルを上げる
-    //    }
-    //    else//スキルの追加
-    //    {
-    //        ISkill newSkill = null;
-    //        switch ((SkillDef)skillId)
-    //        {
-    //            case SkillDef.Bullet:
-    //                newSkill = new BulletRoot();
-    //                break;
-
-    //            case SkillDef.AreaAttack:
-    //                newSkill = new AreaAttack();
-    //                break;
-    //        }
-
-    //        if (newSkill != null)
-    //        {
-    //            newSkill.Setup();
-    //            _skill.Add(newSkill);
-    //        }
-    //    }
-    //}
-    public void speedup()
+    public void SpeedUp()
     {
         playerspeed = playerspeed * 1.1f;
     }

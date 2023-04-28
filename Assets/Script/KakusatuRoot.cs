@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class KakusatuRoot : MonoBehaviour
 {
+    float speed = 5f;
     [SerializeField] Kakusatu kakusatu;
     [SerializeField] Transform _root = null;
     GameObject player;
     ObjectPool<Kakusatu> kakusatuPool = new ObjectPool<Kakusatu>();
+    int intervalcount = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +22,12 @@ public class KakusatuRoot : MonoBehaviour
     void Update()
     {
         this.transform.position = player.transform.position;
-        if (/*KillCount._KillCount > 10 &&*/ Input.GetKeyDown(KeyCode.Space))
+        transform.Rotate(new Vector3(0, 0, speed * -360 * Time.deltaTime));
+        if (/*KillCount._KillCount > intervalcount &&*/ Input.GetKeyDown(KeyCode.Space))
         {
             var script = kakusatuPool.Instantiate();
-            script.transform.position = player.transform.position + new Vector3(0, 1.35f, 0);
+            script.transform.position = player.transform.position + new Vector3(0, 2.6f, 0);
+            //intervalcount += 10;
             Debug.Log("•KŽE‹Z");
         }
     }
