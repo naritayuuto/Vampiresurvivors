@@ -80,7 +80,7 @@ public class Levelup : MonoBehaviour
 
     public void OnClickBottenPlayerSpeed()
     {
-            playerspeed.speedup();
+            playerspeed.SpeedUp();
             countPlayerSpeed++;
             StackLevelUp();
             this.gameObject.SetActive(false);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HP : MonoBehaviour
+public class HP : MonoBehaviour//Player‚ÌHP‚ª0‚É‚È‚Á‚½‚ç‚Ìˆ—‚ÍTimer‚Ås‚Á‚Ä‚¢‚é
 {
     [SerializeField] Slider hpslider;
     float playerhp = 100;
