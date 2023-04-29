@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    static private GameManager instance = new GameManager();
+    static private GameManager instance = default;
     static public GameManager Instance => instance;
     [SerializeField, Tooltip("ƒvƒŒƒCƒ„[")]
     Player _player = null;
@@ -20,5 +20,5 @@ public class GameManager : MonoBehaviour
     }
     static public List<Enemy> EnemyList => Instance._enemies;
 
-    public Player Player { get => _player;}
+    public Player Player => _player;
 }
