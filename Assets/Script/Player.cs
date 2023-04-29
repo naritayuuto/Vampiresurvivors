@@ -48,7 +48,6 @@ public class Player : MonoBehaviour
         }
         animate(dir.x, dir.y);
         lastMovedDirection = dir;
-        Debug.Log(lastMovedDirection);
     }
 
     void animate(float x,float y)
@@ -66,6 +65,38 @@ public class Player : MonoBehaviour
             if(lastMovedDirection.x != 0 || lastMovedDirection.y != 0)
             {
                 anim.Play("Player-Idle-right");
+            }
+        }
+    }
+    public void AddSkill(int skillId)
+    {
+        var skill = _skill.Where(s => s.SkillId == (SkillDef)skillId);
+        if(skill.Count() > 0)//スキル取得が初めてでは無い場合
+        {
+            skill.Single().LevelUp();
+        }
+        else//スキル初取得（ゲーム開始前）
+        {
+            ISkill newSkill = null;
+            switch ((SkillDef)skillId)
+            {
+                case SkillDef.Bullet:
+                    BulletRoot bullet = new BulletRoot();
+                    break;
+                case SkillDef.Knife:
+                    Knife knife = new Knife();
+                    break;
+                case SkillDef.Magic:
+                    Magic magic = new Magic();
+                    break;
+                case SkillDef.HolyWater:
+                    HolyWater holyWater = new HolyWater();
+                    break;
+            }
+            if(newSkill != null)
+            {
+                newSkill.SetUp();
+                _skill.Add(newSkill);
             }
         }
     }
