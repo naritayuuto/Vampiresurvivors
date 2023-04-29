@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Knife : MonoBehaviour, IObjectPool, ISkill
+public class Knife : MonoBehaviour, IObjectPool
 {
-    public SkillDef SkillId => SkillDef.Knife;
     SpriteRenderer _image;
     Collider2D collider;
     Rigidbody2D _rb;
@@ -24,6 +23,7 @@ public class Knife : MonoBehaviour, IObjectPool, ISkill
     [Tooltip("‰æ–Ê“à‚É‰f‚Á‚Ä‚¢‚½‚çTrue")]
     bool _isActrive = false;
     public bool IsActive => _isActrive;
+
     void Awake()
     {
         _image = GetComponent<SpriteRenderer>();
@@ -72,10 +72,5 @@ public class Knife : MonoBehaviour, IObjectPool, ISkill
         _image.enabled = false;
         collider.enabled = false;
         _isActrive = false;
-    }
-    public void Levelup()
-    {
-        _damagemin += _addDamage;
-        _damagemax += _addDamage;
     }
 }

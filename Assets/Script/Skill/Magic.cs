@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Magic : MonoBehaviour, IObjectPool, ISkill
+public class Magic : MonoBehaviour, IObjectPool
 {
-    public SkillDef SkillId => SkillDef.Magic;
     Rigidbody2D _rb;
     SpriteRenderer _image;
     Collider2D collider;
@@ -30,27 +29,9 @@ public class Magic : MonoBehaviour, IObjectPool, ISkill
         collider = GetComponent<Collider2D>();
     }
     // Start is called before the first frame update
-    void Start()
+    public void TargetSet(Enemy enemy)
     {
-        GameManager.Instance.Setup();
-        List<Enemy> enemys = GameManager.EnemyList;
-        foreach (var enemy in enemys)
-        {
-            float dis = Vector3.Distance(enemy.transform.position, GameManager.Instance.Player.transform.position);
-            if(_dis == 0)
-            {
-                _dis = dis;
-                _terget = enemy;
-            }
-            else
-            {
-                if(_dis > dis)
-                {
-                    _dis = dis;
-                    _terget = enemy;
-                }
-            }
-        }
+        _terget = enemy;
     }
 
     // Update is called once per frame
@@ -94,9 +75,5 @@ public class Magic : MonoBehaviour, IObjectPool, ISkill
         _image.enabled = false;
         collider.enabled = false;
         _isActrive = false;
-    }
-    public void Levelup()
-    {
-
     }
 }

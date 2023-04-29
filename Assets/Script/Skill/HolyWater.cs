@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HolyWater : MonoBehaviour, IObjectPool, ISkill
+public class HolyWater : MonoBehaviour, IObjectPool
 {
-    public SkillDef SkillId => SkillDef.HolyWater;
     SpriteRenderer _image;
     Collider2D collider;
     float _damage = 10f;
@@ -16,8 +15,6 @@ public class HolyWater : MonoBehaviour, IObjectPool, ISkill
     float _time = 0f;
     [Tooltip("‰æ–Ê“à‚É‰f‚Á‚Ä‚¢‚ç‚ê‚éŽžŠÔ")]
     float _interval = 2f;
-    [Tooltip("ƒŒƒxƒ‹ƒAƒbƒvŽž‚É‰ÁŽZ‚·‚é’l")]
-    const float _addInterval = 0.5f;
     [Tooltip("‰æ–Ê“à‚É‰f‚Á‚Ä‚¢‚½‚çTrue")]
     bool _isActrive = false;
     public bool IsActive => _isActrive;
@@ -65,9 +62,5 @@ public class HolyWater : MonoBehaviour, IObjectPool, ISkill
         _image.enabled = false;
         collider.enabled = false;
         _isActrive = false;
-    }
-    public void Levelup()
-    {
-        _interval += _addInterval;
     }
 }

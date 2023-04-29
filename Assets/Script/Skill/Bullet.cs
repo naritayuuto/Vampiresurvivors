@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour,IObjectPool
 {
-    [SerializeField] float bulletSpeed = 7f;
-    [SerializeField] Vector3 Up = Vector3.up;
+    [SerializeField] 
+    float bulletSpeed = 7f;
     float _damage = 6f;
     [SerializeField] float damagemin = 5f;
     [SerializeField] float damagemax = 7f;
@@ -30,11 +30,6 @@ public class Bullet : MonoBehaviour,IObjectPool
             Destroy();
             time = time - interval;
         }
-    }
-    public void Weaponpower()
-    {
-        damagemin += 2;
-        damagemax += 2;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
