@@ -88,7 +88,7 @@ public class Levelup : MonoBehaviour
             
     public void OnClickBottenWeaponPowerUp()
     {
-        Bulletpower.Weaponpower();
+        //Bulletpower.Weaponpower();
         countWeaponPowerUp++;
         StackLevelUp();
         this.gameObject.SetActive(false);
@@ -96,7 +96,7 @@ public class Levelup : MonoBehaviour
 
     public void OnClickBottenWeaponSpeed()
     {
-        Bulletspeed.Levelup();
+        Bulletspeed.LevelUp();
         countWeaponSpeed++;
         StackLevelUp();
         this.gameObject.SetActive(false);
