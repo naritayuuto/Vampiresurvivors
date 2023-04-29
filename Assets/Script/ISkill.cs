@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 interface ISkill
 {
     SkillDef SkillId { get; }
-    void Levelup();
+    void SetUp();
+    void LevelUp();
 }
 
 public enum SkillDef
