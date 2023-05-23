@@ -14,17 +14,24 @@ public class Enemy : MonoBehaviour, IObjectPool
     Rigidbody2D rb;
     SpriteRenderer _image;
     Collider2D collider;
-    
+    SpriteRenderer _sprite;
+    Color _startColor;
+    [Tooltip("ì_ñ≈ÇÃä‘äuïbêî")]
+    float _count = 0.2f;
+    [Tooltip("ì_ñ≈âÒêî")]
+    const int _two = 2;
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         _image = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
+        _sprite = GetComponent<SpriteRenderer>();
+        _startColor = _sprite.color;
     }
     void Start()
     {
-        h = GameObject.Find("Player").GetComponent<HP>();
+        h = GameManager.Instance.Player.GetComponent<HP>();
     }
     void Update()
     {
@@ -43,10 +50,26 @@ public class Enemy : MonoBehaviour, IObjectPool
             hp += 10;
             KillCount._KillCount++;
         }
-        //TODO
-        //GameManager.Instance.GetExperience(1);
+        else
+        {
+            StartCoroutine("ColorChange");
+            StopCoroutine("ColorChange");
+        }
     }
 
+    IEnumerable ColorChange()
+    {
+        for (int i = 0; i < _two; i++)
+        {
+            _sprite.color = Color.red;
+        }
+       yield return new WaitForSeconds(_count);
+        for(int i = 0; i < _two; i++)
+        {
+            _sprite.color = _startColor;
+        }
+        yield return new WaitForSeconds(_count);
+    }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
